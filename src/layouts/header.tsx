@@ -120,8 +120,6 @@ const Header: React.FC = () => {
           </div>
         </MobileNav>
       </Navbar>
-      <div className="mx-auto max-w-screen-md py-12">
-      </div>
     </div>
   );
 };
