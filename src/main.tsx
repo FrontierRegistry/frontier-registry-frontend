@@ -4,8 +4,12 @@ import './index.css'
 
 import AppRoutes from "./Route";
 
+import { ThemeProvider } from "@material-tailwind/react";
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AppRoutes />
+    <ThemeProvider>
+      <AppRoutes />
+    </ThemeProvider>
   </StrictMode>,
 )
