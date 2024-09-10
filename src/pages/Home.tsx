@@ -1,17 +1,16 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import Header from "../layouts/header";
 import Footer from "../layouts/footer";
 
-function HomePage() {
+function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen w-screen px-4">
       <Header />
-      Homepage
+      Home
       <Footer />
     </div>
   );
 }
 
-export default HomePage;
+export default Home;
