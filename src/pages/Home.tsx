@@ -5,7 +5,7 @@ import Footer from "../layouts/footer";
 function Home() {
 
   return (
-    <div className="flex flex-col items-center h-screen w-screen px-4">
+    <div className="flex flex-col items-center h-screen w-screen px-4 overflow-hidden">
       <Header />
       <div className="text-green-500">
         Home
