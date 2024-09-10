@@ -2,11 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Button,
   IconButton,
-  Card,
 } from "@material-tailwind/react";
 
 const Header: React.FC = () => {
@@ -53,8 +52,6 @@ const Header: React.FC = () => {
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
-            as="a"
-            href="#"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             <Link to="/" className="flex items-center">
@@ -111,14 +108,14 @@ const Header: React.FC = () => {
             </IconButton>
           </div>
         </div>
-        <MobileNav open={openNav}>
+        <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
             <Button fullWidth variant="gradient" size="sm" className="">
               <span>Sign in</span>
             </Button>
           </div>
-        </MobileNav>
+        </Collapse>
       </Navbar>
     </div>
   );
