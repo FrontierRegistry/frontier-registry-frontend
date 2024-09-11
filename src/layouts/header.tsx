@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import type { RootState } from "../store";
 import { useSelector, useDispatch } from "react-redux";
-import { userPublicKey, setPublicKey } from "../features/userSlice";
+import { setPublicKey } from "../features/userSlice";
 import { collapseAddress } from "../core/utils";
 
 import kit from "../core/stellar-wallets-kit";
@@ -33,8 +33,7 @@ const Header: FC = () => {
           try {
             kit.setWallet(option.id);
             const { address } = await kit.getAddress();
-            console.log(address)
-            dispatch(setPublicKey(userPublicKey(address)))
+            dispatch(setPublicKey({ publicKey: address }))
           } catch (e) {
             console.error(e);
           }
