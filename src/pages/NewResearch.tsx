@@ -1,7 +1,6 @@
 import {
   Card,
   Input,
-  Checkbox,
   Button,
   Typography,
   Textarea
