@@ -1,4 +1,4 @@
-import React from "react";
+import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Navbar,
@@ -7,16 +7,42 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
+import type { RootState } from "../store";
+import { useSelector, useDispatch } from "react-redux";
+import { userPublicKey, setPublicKey } from "../features/userSlice";
 
-const Header: React.FC = () => {
-  const [openNav, setOpenNav] = React.useState(false);
+import kit from "../core/stellar-wallets-kit";
 
-  React.useEffect(() => {
+const Header: FC = () => {
+  const [openNav, setOpenNav] = useState(false);
+  const publicKey = useSelector((state: RootState) => state.user.connectionState.publicKey)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
   }, []);
+
+  const openWallet = async () => {
+    try {
+      await kit.openModal({
+        onWalletSelected: async option => {
+          try {
+            kit.setWallet(option.id);
+            const { address } = await kit.getAddress();
+            console.log(address)
+            dispatch(setPublicKey(userPublicKey(address)))
+          } catch (e) {
+            console.error(e);
+          }
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -61,13 +87,23 @@ const Header: React.FC = () => {
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
-              <Button
-                variant="gradient"
-                size="sm"
-                className="hidden lg:inline-block"
-              >
-                <span>Sign in</span>
-              </Button>
+              {!publicKey ?
+                <Button
+                  variant="gradient"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                  onClick={() => { openWallet() }}
+                >
+                  <span>Sign in</span>
+                </Button>
+                : <Button
+                  variant="gradient"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
+                  <span>{publicKey}</span>
+                </Button>
+              }
             </div>
             <IconButton
               variant="text"
@@ -111,9 +147,14 @@ const Header: React.FC = () => {
         <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
-            <Button fullWidth variant="gradient" size="sm" className="">
-              <span>Sign in</span>
-            </Button>
+            {!publicKey ?
+              <Button fullWidth variant="gradient" size="sm" className="" onClick={() => { openWallet() }}>
+                <span>Sign in</span>
+              </Button>
+              : <Button fullWidth variant="gradient" size="sm" className="">
+                <span>{publicKey}</span>
+              </Button>
+            }
           </div>
         </Collapse>
       </Navbar>
