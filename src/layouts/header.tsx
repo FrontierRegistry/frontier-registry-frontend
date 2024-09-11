@@ -10,6 +10,7 @@ import {
 import type { RootState } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 import { userPublicKey, setPublicKey } from "../features/userSlice";
+import { collapseAddress } from "../core/utils";
 
 import kit from "../core/stellar-wallets-kit";
 
@@ -101,7 +102,7 @@ const Header: FC = () => {
                   size="sm"
                   className="hidden lg:inline-block"
                 >
-                  <span>{publicKey}</span>
+                  <span>{collapseAddress(publicKey)}</span>
                 </Button>
               }
             </div>
@@ -152,7 +153,7 @@ const Header: FC = () => {
                 <span>Sign in</span>
               </Button>
               : <Button fullWidth variant="gradient" size="sm" className="">
-                <span>{publicKey}</span>
+                <span>{collapseAddress(publicKey)}</span>
               </Button>
             }
           </div>
