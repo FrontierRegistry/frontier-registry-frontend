@@ -16,24 +16,26 @@ import kit from "../core/stellar-wallets-kit";
 
 const Header: FC = () => {
   const [openNav, setOpenNav] = useState(false);
-  const publicKey = useSelector((state: RootState) => state.user.connectionState.publicKey)
+  const publicKey = useSelector(
+    (state: RootState) => state.user.connectionState.publicKey
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false),
+      () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
 
   const openWallet = async () => {
     try {
       await kit.openModal({
-        onWalletSelected: async option => {
+        onWalletSelected: async (option) => {
           try {
             kit.setWallet(option.id);
             const { address } = await kit.getAddress();
-            dispatch(setPublicKey({ publicKey: address }))
+            dispatch(setPublicKey({ publicKey: address }));
           } catch (e) {
             console.error(e);
           }
@@ -42,17 +44,19 @@ const Header: FC = () => {
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/" className="flex items-center">Home</Link>
+        <Link to="/" className="flex items-center text-xl">
+          Home
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -60,7 +64,9 @@ const Header: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/newresearch" className="flex items-center">New Research</Link>
+        <Link to="/newresearch" className="flex items-center text-xl">
+          New Research
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -68,7 +74,9 @@ const Header: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/myresearch" className="flex items-center">My Research</Link>
+        <Link to="/myresearch" className="flex items-center text-xl">
+          My Research
+        </Link>
       </Typography>
     </ul>
   );
@@ -77,9 +85,7 @@ const Header: FC = () => {
     <div className="max-h-[768px] w-[calc(100%+48px)]">
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
-            className="mr-4 cursor-pointer py-1.5 font-medium"
-          >
+          <Typography className="mr-4 cursor-pointer py-1.5 font-medium">
             <Link to="/" className="flex items-center">
               <img src="/logo.png" alt="logo" width="40px" height="40px" />
             </Link>
@@ -87,23 +93,28 @@ const Header: FC = () => {
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
-              {!publicKey ?
+              {!publicKey ? (
                 <Button
                   variant="gradient"
                   size="sm"
+                  color="blue"
                   className="hidden lg:inline-block"
-                  onClick={() => { openWallet() }}
+                  onClick={() => {
+                    openWallet();
+                  }}
                 >
-                  <span>Sign in</span>
+                  <span className="text-xl">Sign in</span>
                 </Button>
-                : <Button
+              ) : (
+                <Button
+                  color="blue"
                   variant="gradient"
                   size="sm"
                   className="hidden lg:inline-block"
                 >
                   <span>{collapseAddress(publicKey)}</span>
                 </Button>
-              }
+              )}
             </div>
             <IconButton
               variant="text"
@@ -147,14 +158,23 @@ const Header: FC = () => {
         <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
-            {!publicKey ?
-              <Button fullWidth variant="gradient" size="sm" className="" onClick={() => { openWallet() }}>
+            {!publicKey ? (
+              <Button
+                fullWidth
+                variant="gradient"
+                size="sm"
+                className=""
+                onClick={() => {
+                  openWallet();
+                }}
+              >
                 <span>Sign in</span>
               </Button>
-              : <Button fullWidth variant="gradient" size="sm" className="">
+            ) : (
+              <Button fullWidth variant="gradient" size="sm" className="">
                 <span>{collapseAddress(publicKey)}</span>
               </Button>
-            }
+            )}
           </div>
         </Collapse>
       </Navbar>
@@ -163,4 +183,3 @@ const Header: FC = () => {
 };
 
 export default Header;
-

@@ -1,4 +1,4 @@
-import FrontierResAtom from './FrontierResAtom'
+import FrontierResAtom from './Atoms/FrontierResAtom'
 import { FrSourceData } from '../data/Data'
 
 const FrontierResource = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import FrontierScAtom from './FrontierScAtom'
+import FrontierScAtom from './Atoms/FrontierScAtom'
 import { FrScData } from '../data/Data'
 
 const FrontierScientific = () => {
