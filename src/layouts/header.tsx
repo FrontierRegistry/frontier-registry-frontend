@@ -51,10 +51,10 @@ const Header: FC = () => {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
+        color="blue"
+        className="p-1 font-normal "
       >
-        <Link to="/" className="flex items-center text-xl">
+        <Link to="/" className="flex items-center text-xl text-custom-blue">
           Home
         </Link>
       </Typography>
@@ -64,7 +64,7 @@ const Header: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/newresearch" className="flex items-center text-xl">
+        <Link to="/newresearch" className="flex items-center text-xl text-custom-blue">
           New Research
         </Link>
       </Typography>
@@ -74,7 +74,7 @@ const Header: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/myresearch" className="flex items-center text-xl">
+        <Link to="/myresearch" className="flex items-center text-xl text-custom-blue">
           My Research
         </Link>
       </Typography>
@@ -98,7 +98,7 @@ const Header: FC = () => {
                   variant="gradient"
                   size="sm"
                   color="blue"
-                  className="hidden lg:inline-block"
+                  className="hidden lg:inline-block btn-lowercase !border-none focus:outline-none"
                   onClick={() => {
                     openWallet();
                   }}
@@ -109,7 +109,7 @@ const Header: FC = () => {
                 <Button
                   color="blue"
                   variant="gradient"
-                  size="sm"
+                  size="md"
                   className="hidden lg:inline-block"
                 >
                   <span>{collapseAddress(publicKey)}</span>
@@ -162,8 +162,9 @@ const Header: FC = () => {
               <Button
                 fullWidth
                 variant="gradient"
-                size="sm"
-                className=""
+                size="md"
+                color="blue"
+                className="!border-none focus:outline-none"
                 onClick={() => {
                   openWallet();
                 }}

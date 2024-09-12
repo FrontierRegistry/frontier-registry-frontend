@@ -19,10 +19,10 @@ const LINKS = [
 const currentYear = new Date().getFullYear();
 const Footer: React.FC = () => {
   return (
-    <footer className="relative w-full">
-      <div className="mx-auto w-full max-w-7xl px-8">
+    <footer className="relative w-[110%] bg-back-blue">
+      <div className="mx-auto w-full max-w-7xl 2xl:px-8 px-14 py-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-          <Typography variant="h5" className="mb-6">
+          <Typography variant="h5" className="mb-6 text-white">
             Frontier registry
           </Typography>
           <div className="grid grid-cols-3 justify-between gap-4">
@@ -30,8 +30,8 @@ const Footer: React.FC = () => {
               <ul key={title}>
                 <Typography
                   variant="small"
-                  color="blue-gray"
-                  className="mb-3 font-medium opacity-40"
+                  color="white"
+                  className="mb-3 font-medium opacity-70 "
                 >
                   {title}
                 </Typography>
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                     <Typography
                       as="a"
                       href="#"
-                      color="gray"
+                      color="white"
                       className="py-1.5 font-normal transition-colors hover:text-blue-gray-900"
                     >
                       {link}
@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
             variant="small"
             className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
           >
-            &copy; {currentYear} <Link to="/">Frontier registry</Link>. All
+            &copy; {currentYear} <Link to="/" className="text-white text-base">Frontier registry</Link>. All
             Rights Reserved.
           </Typography>
           <div className="flex gap-4 text-blue-gray-900 sm:justify-center">

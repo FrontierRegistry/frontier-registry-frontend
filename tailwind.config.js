@@ -16,6 +16,8 @@ export default withMT({
       },
       colors: {
         "custom-ttlclr":"#04121D",
+        "back-blue":"#1867B6",
+        "custom-blue":"#22AFF1"
       }, 
       screens: {
         "xxl":"1280px",
