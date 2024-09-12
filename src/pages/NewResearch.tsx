@@ -17,9 +17,9 @@ function NewResearch() {
           <Typography variant="h2"  className="text-custom-blue">
             New Research
           </Typography>
-          <form className="mt-8 mb-2 max-w-screen-2xl sm:w-full">
+          <form className="mt-12 mb-12 max-w-screen-2xl sm:w-full">
             <div className="mb-1 flex flex-col gap-6">
-              <Typography variant="h4" color="blue-gray" className="-mb-3">
+              <Typography variant="h4" color="blue-gray" className="mt-3">
                 Title
               </Typography>
               <Input
@@ -30,13 +30,13 @@ function NewResearch() {
                   className: "before:content-none after:content-none",
                 }}
               />
-              <Typography variant="h4" color="blue-gray" className="-mb-3">
+              <Typography variant="h4" color="blue-gray" className="mt-3">
                 Description
               </Typography>
               <div className="w-full">
                 <Textarea className="focus:!border-blue-400"/>
               </div>
-              <Typography variant="h4" color="blue-gray" className="-mb-3">
+              <Typography variant="h4" color="blue-gray" className="mt-3">
                 Keywords
               </Typography>
               <Input
