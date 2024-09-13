@@ -1,7 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  Navbar,
   Collapse,
 } from "@material-tailwind/react";
 import type { RootState } from "../store";
@@ -48,21 +47,21 @@ const Header: FC = () => {
       <li
         className="p-1 font-normal text-blue-500"
       >
-        <Link to="/" className="flex items-center text-xl text-custom-blue ">
+        <Link to="/" className="block antialiased font-sans items-center text-xl text-custom-blue ">
           Home
         </Link>
       </li>
       <li
         className="p-1 font-normal text-blue-500"
       >
-        <Link to="/newresearch" className="flex items-center text-xl text-custom-blue ">
+        <Link to="/newresearch" className="block antialiased font-sans items-center text-xl text-custom-blue ">
           New Research
         </Link>
       </li>
       <li
         className="p-1 font-normal text-blue-500"
       >
-        <Link to="/myresearch" className="flex items-center text-xl text-custom-blue">
+        <Link to="/myresearch" className="block antialiased font-sans items-center text-xl text-custom-blue">
           My Research
         </Link>
       </li>
@@ -83,7 +82,7 @@ const Header: FC = () => {
             <div className="flex items-center gap-x-1">
               {!publicKey ? (
                 <button
-                  className="hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100"
+                  className="font-sans hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100"
                   onClick={() => {
                     openWallet();
                   }}
@@ -92,7 +91,7 @@ const Header: FC = () => {
                 </button>
               ) : (
                 <button
-                  className="hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100"
+                  className="font-sans hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100"
                 >
                   <span>{collapseAddress(publicKey)}</span>
                 </button>
@@ -140,7 +139,7 @@ const Header: FC = () => {
           <div className="flex items-center gap-x-1">
             {!publicKey ? (
               <button
-                className="hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100"
+                className="font-sans hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100"
                 onClick={() => {
                   openWallet();
                 }}
@@ -148,7 +147,7 @@ const Header: FC = () => {
                 <span>Sign in</span>
               </button>
             ) : (
-              <button className="hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100">
+              <button className="font-sans hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100">
                 <span>{collapseAddress(publicKey)}</span>
               </button>
             )}
