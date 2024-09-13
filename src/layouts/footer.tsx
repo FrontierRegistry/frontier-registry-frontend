@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Typography } from "@material-tailwind/react";
 
 const LINKS = [
   {
@@ -22,29 +21,25 @@ const Footer: React.FC = () => {
     <footer className="relative w-[110%] bg-back-blue">
       <div className="mx-auto w-full max-w-7xl 2xl:px-8 px-14 py-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-          <Typography variant="h5" className="mb-6 text-white">
+          <div className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug mb-6 text-white">
             Frontier registry
-          </Typography>
+          </div>
           <div className="grid grid-cols-3 justify-between gap-4">
             {LINKS.map(({ title, items }) => (
               <ul key={title}>
-                <Typography
-                  variant="small"
-                  color="white"
-                  className="mb-3 font-medium opacity-70 "
+                <p
+                  className="block antialiased font-sans text-sm leading-normal text-white mb-3 font-medium opacity-70"
                 >
                   {title}
-                </Typography>
+                </p>
                 {items.map((link) => (
                   <li key={link}>
-                    <Typography
-                      as="a"
+                    <a
                       href="#"
-                      color="white"
-                      className="py-1.5 font-normal transition-colors hover:text-blue-gray-900"
+                      className="block antialiased font-sans text-base leading-relaxed text-white py-1.5 font-normal transition-colors hover:text-blue-gray-900"
                     >
                       {link}
-                    </Typography>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -52,15 +47,14 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mt-12 flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
-          <Typography
-            variant="small"
-            className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
+          <p
+            className="block antialiased font-sans text-sm leading-normal mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
           >
             &copy; {currentYear} <Link to="/" className="text-white text-base">Frontier registry</Link>. All
             Rights Reserved.
-          </Typography>
+          </p>
           <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
-            <Typography as="a" href="#" className="opacity-80 transition-opacity hover:opacity-100">
+            <a href="#" className="block antialiased font-sans text-base font-light leading-relaxed text-inherit opacity-80 transition-opacity hover:opacity-100">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fillRule="evenodd"
@@ -68,23 +62,23 @@ const Footer: React.FC = () => {
                   clipRule="evenodd"
                 />
               </svg>
-            </Typography>
-            <Typography as="a" href="https://x.com/frontierdao" className="opacity-80 transition-opacity hover:opacity-100">
+            </a>
+            <a href="https://x.com/frontierdao" className="block antialiased font-sans text-base font-light leading-relaxed text-inherit opacity-80 transition-opacity hover:opacity-100">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
               </svg>
-            </Typography>
-            <Typography as="a" href="https://linkedin.com/in/paigedonner" className="opacity-80 transition-opacity hover:opacity-100">
+            </a>
+            <a href="https://linkedin.com/in/paigedonner" className="block antialiased font-sans text-base font-light leading-relaxed text-inherit opacity-80 transition-opacity hover:opacity-100">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 8c0 .557-.447 1.008-1 1.008s-1-.45-1-1.008c0-.557.447-1.008 1-1.008s1 .452 1 1.008zm0 2h-2v6h2v-6zm3 0h-2v6h2v-2.861c0-1.722 2.002-1.881 2.002 0v2.861h1.998v-3.359c0-3.284-3.128-3.164-4-1.548v-1.093z" />
               </svg>
-            </Typography>
-            <Typography as="a" href="https://x.com/frontierdao" className="opacity-80 transition-opacity hover:opacity-100">
+            </a>
+            <a href="https://x.com/frontierdao" className="block antialiased font-sans text-base font-light leading-relaxed text-inherit opacity-80 transition-opacity hover:opacity-100">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd">
                 <path d="M19.54 0c1.356 0 2.46 1.104 2.46 2.472v21.528l-2.58-2.28-1.452-1.344-1.536-1.428.636 2.22h-13.608c-1.356 0-2.46-1.104-2.46-2.472v-16.224c0-1.368 1.104-2.472 2.46-2.472h16.08zm-4.632 15.672c2.652-.084 3.672-1.824 3.672-1.824 0-3.864-1.728-6.996-1.728-6.996-1.728-1.296-3.372-1.26-3.372-1.26l-.168.192c2.04.624 2.988 1.524 2.988 1.524-1.248-.684-2.472-1.02-3.612-1.152-.864-.096-1.692-.072-2.424.024l-.204.024c-.42.036-1.44.192-2.724.756-.444.204-.708.348-.708.348s.996-.948 3.156-1.572l-.12-.144s-1.644-.036-3.372 1.26c0 0-1.728 3.132-1.728 6.996 0 0 1.008 1.74 3.66 1.824 0 0 .444-.54.804-.996-1.524-.456-2.1-1.416-2.1-1.416l.336.204.048.036.047.027.014.006.047.027c.3.168.6.3.876.408.492.192 1.08.384 1.764.516.9.168 1.956.228 3.108.012.564-.096 1.14-.264 1.74-.516.42-.156.888-.384 1.38-.708 0 0-.6.984-2.172 1.428.36.456.792.972.792.972zm-5.58-5.604c-.684 0-1.224.6-1.224 1.332 0 .732.552 1.332 1.224 1.332.684 0 1.224-.6 1.224-1.332.012-.732-.54-1.332-1.224-1.332zm4.38 0c-.684 0-1.224.6-1.224 1.332 0 .732.552 1.332 1.224 1.332.684 0 1.224-.6 1.224-1.332 0-.732-.54-1.332-1.224-1.332z" />
               </svg>
-            </Typography>
-            <Typography as="a" href="https://github.com/FrontierRegistry" className="opacity-80 transition-opacity hover:opacity-100">
+            </a>
+            <a href="https://github.com/FrontierRegistry" className="block antialiased font-sans text-base font-light leading-relaxed text-inherit opacity-80 transition-opacity hover:opacity-100">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fillRule="evenodd"
@@ -92,7 +86,7 @@ const Footer: React.FC = () => {
                   clipRule="evenodd"
                 />
               </svg>
-            </Typography>
+            </a>
           </div>
         </div>
       </div>
