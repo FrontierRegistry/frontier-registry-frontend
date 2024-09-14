@@ -10,38 +10,38 @@ import { MdCampaign } from "react-icons/md";
 
 const FrScData = [
     {
-        title:"On-chain Science Publishing",
+        title: "On-chain Science Publishing",
         imgUrl: FrScImage1,
-        content:"On-chain Science Publishing first edition collection. The First 10 will be the o..."
+        content: "On-chain Science Publishing first edition collection. The First 10 will be the o..."
     },
     {
-        title:"Divide Chain",
+        title: "Divide Chain",
         imgUrl: FrScImage2,
-        content:"Experimental web3 platform put in the world to explore new models and concepts f..."
+        content: "Experimental web3 platform put in the world to explore new models and concepts f..."
     },
     {
-        title:"On-chain Science Publishing",
+        title: "On-chain Science Publishing",
         imgUrl: FrScImage3,
-        content:"REW Racing is the latest Play-to-Earn competitive racing metaverse from the REW ..."
+        content: "REW Racing is the latest Play-to-Earn competitive racing metaverse from the REW ..."
     }
 ]
 
 const FrSourceData = [
     {
         imgUrl: Resource1,
-        content:"Keeping yourself safe when buying NFTsSp..."
+        content: "Keeping yourself safe when buying NFTsSp..."
     },
     {
         imgUrl: Resource1,
-        content:"The beginner’s guide to creating & selli..."
+        content: "The beginner’s guide to creating & selli..."
     },
     {
         imgUrl: Resource1,
-        content:"7 reasons to sell your NFTsSpace explora..."
+        content: "7 reasons to sell your NFTsSpace explora..."
     },
     {
         imgUrl: Resource1,
-        content:"Good example to start blockchain...."
+        content: "Good example to start blockchain...."
     }
 ]
 

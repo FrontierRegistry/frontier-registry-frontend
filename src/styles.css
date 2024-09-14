@@ -39,3 +39,16 @@
             inset rgb(33 150 243) 0 -3em 0 0;
     }
 }
+
+.i-rotate {
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}

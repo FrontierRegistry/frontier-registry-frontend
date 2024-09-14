@@ -36,6 +36,7 @@ const Header: FC = () => {
             console.error(e);
           }
         },
+
       });
     } catch (e) {
       console.error(e);
