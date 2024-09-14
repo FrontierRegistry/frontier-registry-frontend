@@ -16,6 +16,16 @@ export type CertificateData = {
     keywords: string,
     hash: string
 }
+
+export type Certificate = {
+    frontier_address: string,
+    user_address: string,
+    nft_id: number,
+    title: string,
+    description: string,
+    uri: string,
+    keywords: string,
+}
 // frontier registry contract
 const contract = new StellarSdk.Contract(import.meta.env.VITE_FRONTIER_REGISTRY_CONTRACT_ID);
 // stellar base fee
@@ -89,7 +99,82 @@ export const registerNFT = async (kit: StellarWalletsKit, publicKey: string, tit
 
     // send transaction
     const sendResponse = await server.sendTransaction(tx);
-    console.log(sendResponse)
+
+    if (sendResponse.errorResult) {
+        throw new Error("Transaction error");
+    }
+
+    if (sendResponse.status === SendTxStatus.Pending) {
+        let txResponse = await server.getTransaction(sendResponse.hash);
+
+        // Poll this until the status is not "NOT_FOUND"
+        while (
+            txResponse.status === StellarSdk.SorobanRpc.Api.GetTransactionStatus.NOT_FOUND
+        ) {
+            txResponse = await server.getTransaction(sendResponse.hash);
+
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+
+        if (txResponse.status === StellarSdk.SorobanRpc.Api.GetTransactionStatus.SUCCESS) {
+            let xdrArr = txResponse.returnValue;
+
+            if (xdrArr && '_value' in xdrArr) {
+                let xdr = xdrArr._value;
+                if (Array.isArray(xdr)) {
+                    let certificate: CertificateData = {
+                        description: StellarSdk.scValToNative(xdr[0]._attributes.val),
+                        frontier_address: StellarSdk.scValToNative(xdr[1]._attributes.val),
+                        keywords: StellarSdk.scValToNative(xdr[2]._attributes.val),
+                        nft_id: StellarSdk.scValToNative(xdr[3]._attributes.val),
+                        title: StellarSdk.scValToNative(xdr[4]._attributes.val),
+                        uri: StellarSdk.scValToNative(xdr[5]._attributes.val),
+                        user_address: StellarSdk.scValToNative(xdr[6]._attributes.val),
+                        hash: sendResponse.hash
+                    };
+
+                    return certificate;
+                }
+            }
+
+            throw new Error(
+                `Unabled to submit transaction, status: ${sendResponse.status}`,
+            );
+        }
+
+        throw new Error(
+            `Unabled to submit transaction, status: ${sendResponse.status}`,
+        );
+    }
+    throw new Error(
+        `Unabled to submit transaction, status: ${sendResponse.status}`,
+    );
+}
+
+export const getResearchByUser = async (kit: StellarWalletsKit, publicKey: string) => {
+    // create server
+    const server = new StellarSdk.SorobanRpc.Server(import.meta.env.VITE_TEST_SOROBAN_RPC_URL);
+    // load account
+    let account = await server.getAccount(publicKey);
+    // build transaction
+    let userAddress: Address = new StellarSdk.Address(publicKey);
+
+    const transaction = new StellarSdk.TransactionBuilder(account, { fee })
+        .setNetworkPassphrase(StellarSdk.Networks.TESTNET)
+        .addOperation(contract.call("get_research_by_user", ...[userAddress.toScVal()]))
+        .setTimeout(30) // valid for the next 30s
+        .build();
+
+    const preparedTransaction = await server.prepareTransaction(transaction);
+    // sign transaction with wallet
+    const { signedTxXdr } = await kit.signTransaction(preparedTransaction.toXDR(), {
+        address: publicKey,
+    });
+    // build transaction from xdr
+    const tx = StellarSdk.TransactionBuilder.fromXDR(signedTxXdr, import.meta.env.VITE_TEST_SOROBAN_NETWORK_PASSPHRASE);
+
+    // send transaction
+    const sendResponse = await server.sendTransaction(tx);
 
     if (sendResponse.errorResult) {
         throw new Error("Transaction error");
@@ -110,24 +195,29 @@ export const registerNFT = async (kit: StellarWalletsKit, publicKey: string, tit
         if (txResponse.status === StellarSdk.SorobanRpc.Api.GetTransactionStatus.SUCCESS) {
             let xdrArr = txResponse.returnValue?.value();
 
-            if (xdrArr) {
-                let certificate: CertificateData = {
-                    description: StellarSdk.scValToNative(xdrArr[0]._attributes.val),
-                    frontier_address: StellarSdk.scValToNative(xdrArr[1]._attributes.val),
-                    keywords: StellarSdk.scValToNative(xdrArr[2]._attributes.val),
-                    nft_id: StellarSdk.scValToNative(xdrArr[3]._attributes.val),
-                    title: StellarSdk.scValToNative(xdrArr[4]._attributes.val),
-                    uri: StellarSdk.scValToNative(xdrArr[5]._attributes.val),
-                    user_address: StellarSdk.scValToNative(xdrArr[6]._attributes.val),
-                    hash: sendResponse.hash
-                };
+            let resArr: Array<Certificate> = [];
 
-                return certificate;
+            if (Array.isArray(xdrArr)) {
+                for (let i in xdrArr) {
+                    if ('_value' in xdrArr[i]) {
+                        let xdr = xdrArr[i]._value;
+                        if (Array.isArray(xdr)) {
+                            let tempXdr: Certificate = {
+                                description: StellarSdk.scValToNative(xdr[0]._attributes.val),
+                                frontier_address: StellarSdk.scValToNative(xdr[1]._attributes.val),
+                                keywords: StellarSdk.scValToNative(xdr[2]._attributes.val),
+                                nft_id: StellarSdk.scValToNative(xdr[3]._attributes.val),
+                                title: StellarSdk.scValToNative(xdr[4]._attributes.val),
+                                uri: StellarSdk.scValToNative(xdr[5]._attributes.val),
+                                user_address: StellarSdk.scValToNative(xdr[6]._attributes.val),
+                            }
+                            resArr.push(tempXdr)
+                        }
+                    }
+                }
             }
 
-            throw new Error(
-                `Unabled to submit transaction, status: ${sendResponse.status}`,
-            );
+            return resArr;
         }
 
         throw new Error(
@@ -137,7 +227,4 @@ export const registerNFT = async (kit: StellarWalletsKit, publicKey: string, tit
     throw new Error(
         `Unabled to submit transaction, status: ${sendResponse.status}`,
     );
-
-
-
 }

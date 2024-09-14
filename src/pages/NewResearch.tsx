@@ -71,7 +71,7 @@ function NewResearch() {
       console.log('PDF generated successfully');
       setDownloadStatus(true);
 
-      close();
+      setTimeout(() => { close() }, 2000);
     }
   }, [certificateHtmlContent])
   // 
@@ -94,7 +94,7 @@ function NewResearch() {
       if (selectedFile) {
         const upload: PinResponse = await pinata.upload.file(selectedFile)
         console.log(upload.IpfsHash)
-        setIpfsHash(upload.IpfsHash);
+        setIpfsHash(`https://ipfs.io/ipfs/${upload.IpfsHash}`);
       }
     } catch (error) {
       console.log(error);

@@ -12,7 +12,8 @@ export const makeHtmlContent = (certificateData: CertificateData): string => {
 
 
 Transaction hash: 
-${certificateData.hash}
+${certificateData.hash.slice(0, 50)}
+${certificateData.hash.slice(50, certificateData.hash.length)}
 
 Frontier_address: 
 ${certificateData.frontier_address.slice(0, 50)}
@@ -32,7 +33,8 @@ description:
 ${certificateData.description}
 
 uri: 
-${certificateData.uri}
+${certificateData.uri.slice(0, 50)}
+${certificateData.uri.slice(50, certificateData.uri.length)}
 
 keywords: 
 ${certificateData.keywords}`
