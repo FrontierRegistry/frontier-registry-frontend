@@ -93,7 +93,6 @@ function NewResearch() {
     try {
       if (selectedFile) {
         const upload: PinResponse = await pinata.upload.file(selectedFile)
-        console.log(upload.IpfsHash)
         setIpfsHash(`https://ipfs.io/ipfs/${upload.IpfsHash}`);
       }
     } catch (error) {

@@ -227,4 +227,67 @@ export const getResearchByUser = async (kit: StellarWalletsKit, publicKey: strin
     throw new Error(
         `Unabled to submit transaction, status: ${sendResponse.status}`,
     );
+
+    // const preparedTransaction = await server.prepareTransaction(transaction);
+    // // sign transaction with wallet
+    // const { signedTxXdr } = await kit.signTransaction(preparedTransaction.toXDR(), {
+    //     address: publicKey,
+    // });
+    // // build transaction from xdr
+    // const tx = StellarSdk.TransactionBuilder.fromXDR(signedTxXdr, import.meta.env.VITE_TEST_SOROBAN_NETWORK_PASSPHRASE);
+
+    // // send transaction
+    // const sendResponse = await server.sendTransaction(tx);
+
+    // if (sendResponse.errorResult) {
+    //     throw new Error("Transaction error");
+    // }
+
+    // if (sendResponse.status === SendTxStatus.Pending) {
+    //     let txResponse = await server.getTransaction(sendResponse.hash);
+
+    //     // Poll this until the status is not "NOT_FOUND"
+    //     while (
+    //         txResponse.status === StellarSdk.SorobanRpc.Api.GetTransactionStatus.NOT_FOUND
+    //     ) {
+    //         txResponse = await server.getTransaction(sendResponse.hash);
+
+    //         await new Promise((resolve) => setTimeout(resolve, 1000));
+    //     }
+
+    //     if (txResponse.status === StellarSdk.SorobanRpc.Api.GetTransactionStatus.SUCCESS) {
+    //         let xdrArr = txResponse.returnValue?.value();
+
+    //         let resArr: Array<Certificate> = [];
+
+    //         if (Array.isArray(xdrArr)) {
+    //             for (let i in xdrArr) {
+    //                 if ('_value' in xdrArr[i]) {
+    //                     let xdr = xdrArr[i]._value;
+    //                     if (Array.isArray(xdr)) {
+    //                         let tempXdr: Certificate = {
+    //                             description: StellarSdk.scValToNative(xdr[0]._attributes.val),
+    //                             frontier_address: StellarSdk.scValToNative(xdr[1]._attributes.val),
+    //                             keywords: StellarSdk.scValToNative(xdr[2]._attributes.val),
+    //                             nft_id: StellarSdk.scValToNative(xdr[3]._attributes.val),
+    //                             title: StellarSdk.scValToNative(xdr[4]._attributes.val),
+    //                             uri: StellarSdk.scValToNative(xdr[5]._attributes.val),
+    //                             user_address: StellarSdk.scValToNative(xdr[6]._attributes.val),
+    //                         }
+    //                         resArr.push(tempXdr)
+    //                     }
+    //                 }
+    //             }
+    //         }
+
+    //         return resArr;
+    //     }
+
+    //     throw new Error(
+    //         `Unabled to submit transaction, status: ${sendResponse.status}`,
+    //     );
+    // }
+    // throw new Error(
+    //     `Unabled to submit transaction, status: ${sendResponse.status}`,
+    // );
 }
