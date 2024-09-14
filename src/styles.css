@@ -1,1 +1,41 @@
 /* styles.css */
+.hourglass {
+    display: block;
+    background: white;
+    margin: 1em auto;
+    width: 4em;
+    height: 6em;
+    animation: hourglass 3s linear infinite;
+}
+
+.outer {
+    fill: rgb(33 150 243);
+}
+
+.middle {
+    fill: rgb(255, 255, 255);
+}
+
+@keyframes hourglass {
+    0% {
+        transform: rotate(0deg);
+        box-shadow:
+            inset rgb(33 150 243) 0 -0em 0 0,
+            inset white 0 -3em 0 0,
+            inset rgb(33 150 243) 0 -6em 0 0;
+    }
+    80% {
+        transform: rotate(0deg);
+        box-shadow:
+            inset rgb(33 150 243) 0 -3em 0 0,
+            inset white 0 -3em 0 0,
+            inset rgb(33 150 243) 0 -3em 0 0;
+    }
+    100% {
+        transform: rotate(180deg);
+        box-shadow:
+            inset rgb(33 150 243) 0 -3em 0 0,
+            inset white 0 -3em 0 0,
+            inset rgb(33 150 243) 0 -3em 0 0;
+    }
+}
