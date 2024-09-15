@@ -1,4 +1,3 @@
-import React from 'react'
 import FrontierScAtom from './Atoms/FrontierScAtom'
 import { FrScData } from '../data/Data'
 

@@ -1,5 +1,4 @@
 import FrontierIntroductionImage from "../assets/images/FrontierRegistryBlue.jpg";
-import { Button } from "@material-tailwind/react";  
 
 const FrontierIntroduction = () => {
   return (
@@ -16,15 +15,11 @@ const FrontierIntroduction = () => {
             crowdsource funding by minting your research paper/IP as a NFT.
           </p>
           <div className="flex justify-center items-center lg:mt-10 mt-5 mb-6">
-            <Button
-              color="blue"
-              variant="gradient"
-              ripple={true}
-              className="!border-none focus:outline-none btn-lowercase "
-              size="lg"
+            <button
+              className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm py-3.5 px-7 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] gap-3 !border-none focus:outline-none btn-lowercase"
             >
               <span className="text-xl">Explore</span>
-            </Button>
+            </button>
           </div>
         </div>
         <div className="lg:w-1/2 w-full h-auto rounded flex justify-center items-center">
