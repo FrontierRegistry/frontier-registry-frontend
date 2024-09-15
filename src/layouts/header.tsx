@@ -4,18 +4,19 @@ import {
   Collapse,
 } from "@material-tailwind/react";
 import type { RootState } from "../store";
-import { useSelector, useDispatch } from "react-redux";
-import { setPublicKey } from "../features/userSlice";
+import { useSelector } from "react-redux";
 import { collapseAddress } from "../core/utils";
-
-import kit from "../core/stellar-wallets-kit";
+import { useDispatch } from "react-redux";
+import { openWallet } from "../core/stellar-wallets-kit";
 
 const Header: FC = () => {
   const [openNav, setOpenNav] = useState(false);
+
+  const dispatch = useDispatch();
+
   const publicKey = useSelector(
     (state: RootState) => state.user.connectionState.publicKey
   );
-  const dispatch = useDispatch();
 
   useEffect(() => {
     window.addEventListener(
@@ -23,25 +24,6 @@ const Header: FC = () => {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
-
-  const openWallet = async () => {
-    try {
-      await kit.openModal({
-        onWalletSelected: async (option) => {
-          try {
-            kit.setWallet(option.id);
-            const { address } = await kit.getAddress();
-            dispatch(setPublicKey({ publicKey: address }));
-          } catch (e) {
-            console.error(e);
-          }
-        },
-
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
@@ -85,7 +67,7 @@ const Header: FC = () => {
                 <button
                   className="font-sans hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100"
                   onClick={() => {
-                    openWallet();
+                    openWallet(dispatch);
                   }}
                 >
                   <span className="text-xl">Connect</span>
@@ -142,7 +124,7 @@ const Header: FC = () => {
               <button
                 className="font-sans hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100"
                 onClick={() => {
-                  openWallet();
+                  openWallet(dispatch);
                 }}
               >
                 <span>Connect</span>

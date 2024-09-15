@@ -9,13 +9,17 @@ import { ThemeProvider } from "@material-tailwind/react";
 import { pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+import { openWallet } from './core/stellar-wallets-kit';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
   import.meta.url,
 ).toString();
 
-// console.log(kit.)
+const isActive = localStorage.getItem("openwallet");
+if (isActive) {
+  openWallet(store.dispatch)
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
