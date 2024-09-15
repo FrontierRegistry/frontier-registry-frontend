@@ -88,7 +88,7 @@ const Header: FC = () => {
                     openWallet();
                   }}
                 >
-                  <span className="text-xl">Sign in</span>
+                  <span className="text-xl">Connect</span>
                 </button>
               ) : (
                 <button
@@ -145,7 +145,7 @@ const Header: FC = () => {
                   openWallet();
                 }}
               >
-                <span>Sign in</span>
+                <span>Connect</span>
               </button>
             ) : (
               <button className="font-sans hidden lg:inline-block btn-lowercase !border-none focus:outline-none bg-blue-400 text-gray-100">
