@@ -1,4 +1,3 @@
-import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { useState } from "react";
 import Card from "./";
 import { Document, Page } from 'react-pdf';
@@ -12,18 +11,17 @@ const NftCard = (props: {
   extra?: string;
 }) => {
   const { title, description, keywords, image, extra } = props;
-  const [heart, setHeart] = useState(true);
+  const [pdfErr, setPdfErr] = useState(false);
 
   const [_, setNumPages] = useState<number>();
   const [pageNumber] = useState<number>(1);
 
-  // Outside of React component
-  const options = {
-    standardFontDataUrl: '/standard_fonts/',
-  };
-
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages);
+    try {
+      setNumPages(numPages);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -32,15 +30,15 @@ const NftCard = (props: {
     >
       <div className="h-full w-full">
         <div className="relative w-full">
-          <Document file="https://resources.stellar.org/hubfs/Stellar_CBDC_Whitepaper.pdf" onLoadSuccess={onDocumentLoadSuccess} options={options}>
-            <Page pageNumber={pageNumber} />
-          </Document>
-          <img
+          {!pdfErr ? <Document file={image} onLoadError={(_) => setPdfErr(true)} onLoadSuccess={onDocumentLoadSuccess} className="overflow-hidden h-48">
+            <Page width={220} pageNumber={pageNumber} />
+          </Document> : <img
             src={image}
             className="mb-3 h-full w-full rounded-md 3xl:h-full 3xl:w-full"
             alt=""
           />
-          <button
+          }
+          {/* <button
             onClick={() => setHeart(!heart)}
             className="absolute right-3 top-3 flex items-center justify-center rounded-md bg-white p-2 text-brand-500 hover:cursor-pointer"
           >
@@ -51,7 +49,7 @@ const NftCard = (props: {
                 <IoHeart className="text-brand-500" />
               )}
             </div>
-          </button>
+          </button> */}
         </div>
 
         <div className="mb-3 flex items-center justify-between px-1 md:flex-col md:items-start lg:flex-row lg:justify-between xl:flex-col xl:items-start 3xl:flex-row 3xl:justify-between">
@@ -61,7 +59,7 @@ const NftCard = (props: {
               {title}{" "}
             </p>
             <p className="mt-1 text-sm font-medium text-gray-600 md:mt-2">
-              {description}{" "}
+              {description.slice(0, 100)}{"..."}
             </p>
           </div>
 

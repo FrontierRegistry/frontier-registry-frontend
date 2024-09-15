@@ -64,7 +64,7 @@ function MyResearch() {
           Loading...
         </div> :
           nftData?.map((_, idx) => (
-            <div key={idx} className="z-20 grid grid-cols-1 gap-5 md:grid-cols-5">
+            <div key={idx} className="z-20 grid grid-cols-1 gap-5 md:grid-cols-5 mt-4">
               {nftData[idx * 5] &&
                 <NftCard
                   title={nftData[idx * 5]?.title}
