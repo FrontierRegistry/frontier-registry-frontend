@@ -27,10 +27,18 @@ nft_id:
 ${certificateData.nft_id}
 
 title: 
-${certificateData.title}
+${certificateData.title.slice(0, 70)}
+${certificateData.title.slice(70, 140)}
+${certificateData.title.slice(140, 210)}
+${certificateData.title.slice(210, certificateData.title.length)}
 
 description: 
-${certificateData.description}
+${certificateData.description.slice(0, 70)}
+${certificateData.description.slice(70, 140)}
+${certificateData.description.slice(140, 210)}
+${certificateData.description.slice(210, 280)}
+${certificateData.description.slice(280, 350)}
+${certificateData.description.slice(350, certificateData.description.length)}
 
 uri: 
 ${certificateData.uri.slice(0, 50)}

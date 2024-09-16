@@ -145,6 +145,7 @@ export const getResearchByUser = async (kit: StellarWalletsKit, publicKey: strin
 
     // send transaction
     const sendResponse = await server.sendTransaction(tx);
+    console.log(sendResponse)
 
     if (sendResponse.errorResult) {
         throw new Error("Transaction error");
@@ -158,9 +159,11 @@ export const getResearchByUser = async (kit: StellarWalletsKit, publicKey: strin
             txResponse.status === StellarSdk.SorobanRpc.Api.GetTransactionStatus.NOT_FOUND
         ) {
             txResponse = await server.getTransaction(sendResponse.hash);
+            console.log(txResponse)
 
             await new Promise((resolve) => setTimeout(resolve, 1000));
         }
+        console.log(txResponse)
 
         if (txResponse.status === StellarSdk.SorobanRpc.Api.GetTransactionStatus.SUCCESS) {
             let xdrArr = txResponse.returnValue?.value();
