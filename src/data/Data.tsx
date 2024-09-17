@@ -22,7 +22,7 @@ const FrScData = [
     {
         title: "On-chain Science Publishing",
         imgUrl: FrScImage3,
-        content: "REW Racing is the latest Play-to-Earn competitive racing metaverse from the REW ..."
+        content: "Intellectual Property Certification and Data Provenance authentication ..."
     }
 ]
 

@@ -244,12 +244,12 @@ function NewResearch() {
                 icon={<FailIcon />}
                 className="rounded-none  border-[#2ec946] bg-white font-medium text-black flex items-center"
               >
-                Uploading research data to IFPS
+                Uploading research data to IPFS
               </Alert> : <Alert
                 icon={IpfsHash ? <Icon /> : <LoadingIcon />}
                 className="rounded-none  border-[#2ec946] bg-white font-medium text-black flex items-center"
               >
-                Uploading research data to IFPS
+                Uploading research data to IPFS
               </Alert>
               }
             </div>
