@@ -2,9 +2,10 @@ import Header from "../layouts/header";
 import Footer from "../layouts/footer";
 import kit from "../core/stellar-wallets-kit";
 import { getResearchByUser } from "../core/stellar-core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import NftCard from "../components/card/NftCard";
+import { openWallet } from "../core/stellar-wallets-kit";
 
 import type { Certificate } from "../core/stellar-core";
 
@@ -15,13 +16,22 @@ function MyResearch() {
   const [nftData, setNftData] = useState<null | Array<Certificate>>(null)
   const [err, setErr] = useState(false);
 
+  const dispatch = useDispatch();
+
   const getResearch = async () => {
     try {
-      setErr(false);
-      let res = await getResearchByUser(kit, connectionState.publicKey);
-      setLoading(false)
-      setNftData(res);
+      if (connectionState.publicKey) {
+        setErr(false);
+        let res = await getResearchByUser(kit, connectionState.publicKey);
+        setLoading(false)
+        setNftData(res);
+      }
+      else {
+        setLoading(false)
+        openWallet(dispatch);
+      }
     } catch (error) {
+      console.log(error)
       setErr(true)
     }
   }
