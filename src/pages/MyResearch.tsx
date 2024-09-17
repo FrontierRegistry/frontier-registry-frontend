@@ -58,7 +58,7 @@ function MyResearch() {
   return (
     <div className="flex flex-col items-center h-screen w-screen overflow-x-hidden px-4">
       <Header />
-      <div className="mx-auto max-w-screen-2xl py-12">
+      <div className="mx-auto max-w-screen-2xl py-12 h-full flex justify-center items-center">
         {loading ? <div className="flex gap-2 items-center text-xl">
           <LoadingIcon />
           Loading...

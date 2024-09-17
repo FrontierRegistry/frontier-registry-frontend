@@ -57,7 +57,7 @@ const Header: FC = () => {
         <div className="flex items-center justify-between text-blue-gray-900">
           <div className="mr-4 cursor-pointer py-1.5 font-medium">
             <Link to="/" className="flex items-center">
-              <img src="/logo.png" alt="logo" width="40px" height="40px" />
+              <img src="/logo.png" alt="logo" width="40px" height="40px" className="w-[140px] rounded-xl"/>
             </Link>
           </div>
           <div className="flex items-center gap-4">

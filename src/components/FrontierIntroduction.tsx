@@ -5,7 +5,7 @@ const FrontierIntroduction = () => {
     <div className="flex justify-center items-center font-roboto ">
       <div className="lg:w-[1320px] md:w-[80%] w-full  lg:p-6 p-3 bg-back-blue flex lg:flex-row flex-col-reverse  justify-between items-center lg:gap-3 gap-6 rounded" >
         <div className="pt-10 lg:w-1/2 w-full">
-          <span className="text-white">FrontierDAO #DeSci</span>
+          <span className="text-white">FrontierRegistry #OpenScience</span>
           <h2 className="text-custom-ttlclr xl:text-5xl lg:text-[42px] text-3xl font-bold font-emoji xl:leading-[70px] lg:leading-[60px] leading-10 md:mt-8 mt-4">
             Publish your Scientific Research. IP as NFT. Science on the
             Blockchain.
