@@ -53,11 +53,11 @@ const Header: FC = () => {
 
   return (
     <div className="max-h-[768px] w-[calc(100%+48px)]">
-      <nav className="block w-full shadow-md backdrop-saturate-200 backdrop-blur-2xl bg-opacity-80 border border-white/80 bg-white text-white sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+      <nav className="block w-full shadow-md backdrop-saturate-200 backdrop-blur-2xl bg-opacity-80 border border-white/80 bg-white text-white sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-1">
         <div className="flex items-center justify-between text-blue-gray-900">
           <div className="mr-4 cursor-pointer py-1.5 font-medium">
             <Link to="/" className="flex items-center">
-              <img src="/logo.png" alt="logo" width="40px" height="40px" />
+              <img src="/logo.png" alt="logo" width="40px" height="40px" className="w-[120px] rounded-xl"/>
             </Link>
           </div>
           <div className="flex items-center gap-4">
