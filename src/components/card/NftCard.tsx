@@ -38,27 +38,14 @@ const NftCard = (props: {
             alt=""
           />
           }
-          {/* <button
-            onClick={() => setHeart(!heart)}
-            className="absolute right-3 top-3 flex items-center justify-center rounded-md bg-white p-2 text-brand-500 hover:cursor-pointer"
-          >
-            <div className="flex h-full w-full items-center justify-center rounded-md text-xl hover:bg-gray-50 dark:text-navy-900">
-              {heart ? (
-                <IoHeartOutline />
-              ) : (
-                <IoHeart className="text-brand-500" />
-              )}
-            </div>
-          </button> */}
         </div>
 
         <div className="mb-3 flex items-center justify-between px-1 md:flex-col md:items-start lg:flex-row lg:justify-between xl:flex-col xl:items-start 3xl:flex-row 3xl:justify-between">
-          <div className="mb-2">
-            <p className="text-lg font-bold text-navy-700 dark:text-white">
-              {" "}
+          <div className="mb-2 w-full">
+            <p className="text-lg font-bold text-navy-700 dark:text-white break-words">
               {title}{" "}
             </p>
-            <p className="mt-1 text-sm font-medium text-gray-600 md:mt-2">
+            <p className="mt-1 text-sm font-medium text-gray-600 md:mt-2 break-words">
               {description.slice(0, 100)}{"..."}
             </p>
           </div>
@@ -67,9 +54,9 @@ const NftCard = (props: {
           </div>
         </div>
 
-        <div className="flex items-center justify-between md:flex-col md:items-start lg:flex-row lg:justify-between xl:flex-col 2xl:items-start 3xl:flex-row 3xl:items-center 3xl:justify-between">
-          <div className="flex">
-            <p className="mb-2 text-sm font-bold text-brand-500 dark:text-white">
+        <div className="flex items-center justify-between md:flex-col md:items-start lg:flex-row lg:justify-between xl:flex-col 2xl:items-start 3xl:flex-row 3xl:items-center 3xl:justify-between w-full">
+          <div className="flex w-full">
+            <p className="mb-2 text-sm font-bold text-brand-500 dark:text-white break-words w-full">
               Keywords: {keywords}
             </p>
           </div>
