@@ -21,9 +21,21 @@ const Footer: React.FC = () => {
     <footer className="relative w-[110%] bg-back-blue">
       <div className="mx-auto w-full max-w-7xl 2xl:px-8 px-14 py-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-          <div className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug mb-6 text-white">
-            Iot Logistics, LLC
-          </div>
+          <Link
+            to="https://iotlogistics.international"
+            className="text-white text-base"
+          >
+            <div className="flex justify-start items-start antialiased gap-1 tracking-normal font-sans text-xl font-semibold leading-snug mb-6 text-white">
+              <img
+                src="/iot.png"
+                alt=""
+                className="w-[80px] rounded h-[50px]"
+              />
+              <p className="flex justify-center items-center mt-3">
+                Iot Logistics, LLC
+              </p>
+            </div>
+          </Link>
           <div className="grid grid-cols-3 justify-between gap-4">
             {LINKS.map(({ title, items }) => (
               <ul key={title}>

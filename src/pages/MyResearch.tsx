@@ -15,7 +15,7 @@ function MyResearch() {
   const [nftData, setNftData] = useState<null | Array<Certificate>>(null)
 
   const getResearch = async () => {
-    let res = await getResearchByUser(kit, connectionState.publicKey);
+    const res = await getResearchByUser(kit, connectionState.publicKey);
     setLoading(false)
     setNftData(res);
   }
